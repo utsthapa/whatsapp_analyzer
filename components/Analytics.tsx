@@ -14,12 +14,14 @@ import {
 import { motion } from 'framer-motion';
 
 interface AnalyticsProps {
-  data: ChatAnalytics;
+  data: ChatAnalytics | null;
 }
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
 export default function Analytics({ data }: AnalyticsProps) {
+  if (!data) return null;
+
   const dailyData = Object.entries(data.activityPatterns.byDay).map(([day, count]) => ({
     day,
     messages: count,

@@ -8,7 +8,6 @@ interface FileUploadProps {
 
 export default function FileUpload({ onFileSelect }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -25,7 +24,7 @@ export default function FileUpload({ onFileSelect }: FileUploadProps) {
     
     const file = e.dataTransfer.files[0];
     if (file && file.name.endsWith('.txt')) {
-      simulateUpload(file);
+      onFileSelect(file);
     } else {
       alert('Please upload a valid WhatsApp chat export (.txt) file');
     }
@@ -34,24 +33,10 @@ export default function FileUpload({ onFileSelect }: FileUploadProps) {
   const handleFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && file.name.endsWith('.txt')) {
-      simulateUpload(file);
+      onFileSelect(file);
     } else {
       alert('Please upload a valid WhatsApp chat export (.txt) file');
     }
-  };
-
-  const simulateUpload = (file: File) => {
-    setUploadProgress(0);
-    const interval = setInterval(() => {
-      setUploadProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          onFileSelect(file);
-          return 100;
-        }
-        return prev + 10;
-      });
-    }, 200);
   };
 
   return (
@@ -63,7 +48,7 @@ export default function FileUpload({ onFileSelect }: FileUploadProps) {
     >
       <div
         className={`border-2 border-dashed rounded-lg p-12 text-center ${
-          isDragging ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
+          isDragging ? 'border-blue-500 bg-blue-50' : 'border-slate-300'
         }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -89,19 +74,6 @@ export default function FileUpload({ onFileSelect }: FileUploadProps) {
         >
           Select File
         </label>
-        {uploadProgress > 0 && uploadProgress < 100 && (
-          <div className="mt-4">
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
-              <div
-                className="bg-blue-600 h-2.5 rounded-full transition-all duration-200"
-                style={{ width: `${uploadProgress}%` }}
-              ></div>
-            </div>
-            <p className="text-sm text-slate-600 mt-2">
-              Uploading... {uploadProgress}%
-            </p>
-          </div>
-        )}
       </div>
     </motion.div>
   );
