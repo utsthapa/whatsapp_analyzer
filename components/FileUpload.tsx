@@ -69,11 +69,11 @@ export default function FileUpload({ onFileSelect }: FileUploadProps) {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <CloudArrowUpIcon className="w-12 h-12 mx-auto text-gray-400 mb-4" />
-        <h3 className="text-lg font-semibold mb-2">
+        <CloudArrowUpIcon className="w-12 h-12 mx-auto text-slate-400 mb-4" />
+        <h3 className="text-lg font-semibold text-slate-900 mb-2">
           Drop your WhatsApp chat export here
         </h3>
-        <p className="text-sm text-gray-500 mb-4">
+        <p className="text-sm text-slate-600 mb-4">
           or click to select a file (.txt)
         </p>
         <input
@@ -97,7 +97,7 @@ export default function FileUpload({ onFileSelect }: FileUploadProps) {
                 style={{ width: `${uploadProgress}%` }}
               ></div>
             </div>
-            <p className="text-sm text-gray-500 mt-2">
+            <p className="text-sm text-slate-600 mt-2">
               Uploading... {uploadProgress}%
             </p>
           </div>

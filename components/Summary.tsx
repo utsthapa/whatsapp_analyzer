@@ -21,14 +21,14 @@ export default function Summary({ summary, isPremium, onUpgradeClick }: SummaryP
     >
       {/* Basic Summary */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold mb-4">Basic Summary</h3>
-        <p className="text-gray-700 leading-relaxed">{summary.basic}</p>
+        <h3 className="text-xl font-semibold text-slate-900 mb-4">Basic Summary</h3>
+        <p className="text-slate-600 leading-relaxed">{summary.basic}</p>
       </div>
 
       {/* Premium Summary */}
       <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg shadow p-6 relative overflow-hidden">
         <div className="flex justify-between items-start mb-4">
-          <h3 className="text-lg font-semibold">Premium Analysis</h3>
+          <h3 className="text-xl font-semibold text-slate-900">Premium Analysis</h3>
           {!isPremium && (
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1 rounded-full text-sm">
               Premium
@@ -37,10 +37,10 @@ export default function Summary({ summary, isPremium, onUpgradeClick }: SummaryP
         </div>
 
         {isPremium ? (
-          <p className="text-gray-700 leading-relaxed">{summary.premium}</p>
+          <p className="text-slate-600 leading-relaxed">{summary.premium}</p>
         ) : (
           <div>
-            <p className="text-gray-700 leading-relaxed mb-4">
+            <p className="text-slate-600 leading-relaxed mb-4">
               {showPremiumPreview
                 ? summary.premium.slice(0, 100) + '...'
                 : 'Unlock our comprehensive analysis for deeper insights into your chat patterns and relationship dynamics.'}

@@ -46,7 +46,7 @@ export default function Analytics({ data }: AnalyticsProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Message Distribution */}
         <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-semibold mb-4">Message Distribution</h3>
+          <h3 className="text-xl font-semibold text-slate-900 mb-4">Message Distribution</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -71,7 +71,7 @@ export default function Analytics({ data }: AnalyticsProps) {
 
         {/* Media Statistics */}
         <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-semibold mb-4">Media Sharing</h3>
+          <h3 className="text-xl font-semibold text-slate-900 mb-4">Media Sharing</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -96,7 +96,7 @@ export default function Analytics({ data }: AnalyticsProps) {
 
         {/* Daily Activity */}
         <div className="bg-white p-6 rounded-lg shadow md:col-span-2">
-          <h3 className="text-lg font-semibold mb-4">Daily Activity</h3>
+          <h3 className="text-xl font-semibold text-slate-900 mb-4">Daily Activity</h3>
           <div className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={dailyData}>
@@ -110,29 +110,31 @@ export default function Analytics({ data }: AnalyticsProps) {
           </div>
         </div>
 
-        {/* Emoji Usage */}
+        {/* Most Used Emojis */}
         <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-semibold mb-4">Most Used Emojis</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <h3 className="text-xl font-semibold text-slate-900 mb-4">Most Used Emojis</h3>
+          <div className="space-y-4">
             {Object.entries(data.emojiStats).map(([emoji, count]) => (
-              <div key={emoji} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+              <div key={emoji} className="flex items-center justify-between">
                 <span className="text-2xl">{emoji}</span>
-                <span className="text-gray-600">{count}</span>
+                <span className="text-slate-600">{count} times</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Link Statistics */}
+        {/* Link Sharing */}
         <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-semibold mb-4">Link Sharing</h3>
-          <div className="space-y-4">
-            <p className="text-lg font-medium">Total Links: {data.linkStats.total}</p>
+          <h3 className="text-xl font-semibold text-slate-900 mb-4">Link Sharing</h3>
+          <div className="text-slate-600">
+            <p className="text-lg mb-2">
+              Total Links: <span className="font-semibold text-slate-900">{data.linkStats.total}</span>
+            </p>
             <div className="space-y-2">
               {Object.entries(data.linkStats.domains).map(([domain, count]) => (
-                <div key={domain} className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">{domain}</span>
-                  <span className="text-sm font-medium">{count}</span>
+                <div key={domain} className="flex justify-between">
+                  <span>{domain}</span>
+                  <span className="font-medium text-slate-900">{count}</span>
                 </div>
               ))}
             </div>

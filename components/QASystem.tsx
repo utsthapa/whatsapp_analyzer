@@ -51,9 +51,9 @@ export default function QASystem({
     >
       <div className="bg-white rounded-lg shadow p-6">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold">Ask Questions About Your Chat</h3>
+          <h3 className="text-xl font-semibold text-slate-900">Ask Questions About Your Chat</h3>
           {!isPremium && (
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-slate-600">
               {remainingQuestions} free questions remaining
             </div>
           )}
@@ -67,13 +67,13 @@ export default function QASystem({
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="Type your question here..."
-              className="flex-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="flex-1 p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 placeholder:text-slate-400"
               disabled={remainingQuestions === 0 && !isPremium}
             />
             <button
               type="submit"
               disabled={!question.trim() || isLoading || (remainingQuestions === 0 && !isPremium)}
-              className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors duration-200"
+              className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-slate-300 disabled:text-slate-500 disabled:cursor-not-allowed transition-colors duration-200"
             >
               {isLoading ? 'Thinking...' : 'Ask'}
             </button>
@@ -83,14 +83,14 @@ export default function QASystem({
         {/* Sample Questions */}
         {responses.length === 0 && (
           <div className="mb-8">
-            <h4 className="text-sm font-medium text-gray-600 mb-3">Try asking:</h4>
+            <h4 className="text-sm font-medium text-slate-700 mb-3">Try asking:</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {SAMPLE_QUESTIONS.map((q) => (
                 <button
                   key={q}
                   onClick={() => setQuestion(q)}
                   disabled={remainingQuestions === 0 && !isPremium}
-                  className="text-left p-3 text-sm text-gray-700 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors duration-200"
+                  className="text-left p-3 text-sm text-slate-700 bg-slate-50 rounded-md hover:bg-slate-100 transition-colors duration-200 disabled:text-slate-400 disabled:bg-slate-50"
                 >
                   {q}
                 </button>
@@ -107,13 +107,11 @@ export default function QASystem({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-50 rounded-lg p-4"
+              className="p-4 bg-slate-50 rounded-lg"
             >
-              <p className="font-medium text-gray-800 mb-2">{response.question}</p>
-              <p className="text-gray-600">{response.answer}</p>
-              <p className="text-xs text-gray-400 mt-2">
-                {new Date(response.timestamp).toLocaleString()}
-              </p>
+              <p className="font-medium text-slate-900 mb-2">{response.question}</p>
+              <p className="text-slate-600">{response.answer}</p>
+              <p className="text-sm text-slate-400 mt-2">{new Date(response.timestamp).toLocaleString()}</p>
             </motion.div>
           ))}
         </div>

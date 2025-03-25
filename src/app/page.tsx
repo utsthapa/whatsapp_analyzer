@@ -29,6 +29,7 @@ import {
   Pie,
   Cell,
 } from 'recharts';
+import Layout from '../../components/layout/Layout';
 
 export default function Home() {
   const [analytics, setAnalytics] = useState<ChatAnalytics | null>(null);
@@ -40,7 +41,7 @@ export default function Home() {
   const [showPaymentWall, setShowPaymentWall] = useState(false);
   const [activeDemo, setActiveDemo] = useState<'messages' | 'media' | 'activity'>('messages');
 
-  const handleFileSelect = async (_file: File) => {
+  const handleFileSelect = async () => {
     // Simulate processing delay
     await new Promise(resolve => setTimeout(resolve, 2000));
     setAnalytics(getMockAnalytics());
@@ -157,18 +158,15 @@ export default function Home() {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <header className="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-bold text-slate-900">
-            WhatsApp Chat Analyzer
-          </h1>
-        </div>
-      </header>
-
+    <Layout>
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         {!analytics ? (
           <>
+            {/* Upload Section - Moved to top */}
+            <div className="max-w-2xl mx-auto mb-16 pt-8">
+              <FileUpload onFileSelect={handleFileSelect} />
+            </div>
+
             {/* Hero Section */}
             <div className="px-4 py-12 sm:py-16 lg:py-20 text-center">
               <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
@@ -253,11 +251,6 @@ export default function Home() {
                     )}
                   </ResponsiveContainer>
                 </div>
-              </div>
-
-              {/* Upload Section */}
-              <div className="max-w-2xl mx-auto mb-20">
-                <FileUpload onFileSelect={handleFileSelect} />
               </div>
 
               {/* Features Grid */}
@@ -364,6 +357,6 @@ export default function Home() {
           onSuccess={handlePaymentSuccess}
         />
       )}
-    </div>
+    </Layout>
   );
 }
